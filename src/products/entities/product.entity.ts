@@ -1,5 +1,5 @@
 // El entity es una representación de lo que será nuestra tabla en la bd
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Product {
@@ -43,5 +43,16 @@ export class Product {
     // tags
 
     // images
+
+    @BeforeInsert() // antes de insertar
+    checkSlugInsert() {
+        if( !this.slug ) {
+            this.slug = this.title
+        }
+        this.slug = this.slug
+            .toLocaleLowerCase()
+            .replaceAll(' ', '_')
+            .replaceAll("'", '')
+    }
 }
  
