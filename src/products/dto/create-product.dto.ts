@@ -1,6 +1,6 @@
+// dto -> información de como lucirá al insertar
 import { IsArray, IsIn, IsInt, IsNumber, IsOptional, IsPositive, IsString, MinLength } from "class-validator";
 
-// dto -> información de como lucirá al insertar
 export class CreateProductDto {
 
     @IsString()
