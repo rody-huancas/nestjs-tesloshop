@@ -115,7 +115,6 @@ export class ProductsService {
 
       this.handleDBExceptions(error)
     }
-
   }
 
   async remove(id: string) {
@@ -129,5 +128,19 @@ export class ProductsService {
 
     this.logger.error(error);
     throw new InternalServerErrorException("Unexpected error, check server logs");
+  }
+
+  async deleteAllProducts() { // eliminar todos los registros, esto elimina en cascada (elimina también sus imagenes relacionadas)
+    const query = this.productRepository.createQueryBuilder('product');
+
+    try {
+      return await query
+        .delete()
+        .where({})
+        .execute()
+
+    } catch (error) {
+      this.handleDBExceptions(error)
+    }
   }
 }
