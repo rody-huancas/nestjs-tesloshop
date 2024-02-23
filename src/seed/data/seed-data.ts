@@ -1,24 +1,47 @@
 interface SeedProduct {
   description: string;
-  images: string[];
-  stock: number;
-  price: number;
-  sizes: ValidSizes[];
-  slug: string;
-  tags: string[];
-  title: string;
-  type: ValidTypes;
-  gender: 'men' | 'women' | 'kid' | 'unisex';
+  images     : string[];
+  stock      : number;
+  price      : number;
+  sizes      : ValidSizes[];
+  slug       : string;
+  tags       : string[];
+  title      : string;
+  type       : ValidTypes;
+  gender     : 'men' | 'women' | 'kid' | 'unisex';
+}
+
+interface SeedUser {
+  email      : string;
+  fullName   : string;
+  password   : string;
+  roles       : string[];
 }
 
 type ValidSizes = 'XS' | 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
 type ValidTypes = 'shirts' | 'pants' | 'hoodies' | 'hats';
 
 interface SeedData {
+  users: SeedUser[];
   products: SeedProduct[];
 }
 
 export const initialData: SeedData = {
+  users: [
+    {
+      email   : "rody@correo.com",
+      fullName: "Rody Huancas",
+      password: "123456",
+      roles   : ["admin"]
+    },
+    {
+      email   : "meche@correo.com",
+      fullName: "Mercedes Carrasco",
+      password: "123456",
+      roles   : ["user"]
+    }
+  ],
+
   products: [
     {
       description:
